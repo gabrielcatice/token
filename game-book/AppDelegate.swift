@@ -20,6 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         let rootViewController: MainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! MainViewController
         
         rootViewController.presenter = presenter
+        presenter.viewController = rootViewController
+        
+        self.window = UIWindow(frame: UIScreen.main.bounds)
+        
+        self.window?.rootViewController = rootViewController
+        
+        self.window?.makeKeyAndVisible()
+        
         return true
     }
 

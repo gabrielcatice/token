@@ -15,7 +15,7 @@ protocol MainPresentationLogic {
 }
 
 class MainPresenter {
-    var viewControler: MainDisplayLogic!
+    var viewController: MainDisplayLogic!
     
     func mapGames(_ games: [Game]) -> GameViewModel {
         let displayedGames = games.map { game in
@@ -29,10 +29,10 @@ extension MainPresenter: MainPresentationLogic {
     func askForGames() {
         GameService.fetch { (result) in
             switch result {
-            case .sucess(let games):
-                viewControler.displayGames(mapGames(games))
-            case .failure(let error):
-                viewControler.displayError()
+            case .success(let games):
+                self.viewController.displayGames(viewModel: self.mapGames(games))
+            case .failure(let _):
+                self.viewController.displayError()
             }
         }
     }

@@ -10,18 +10,18 @@ import Foundation
 
 class GameService {
     
-    static let path = URL.Game
+    static let path = URL.Game.self
     static func fetch(completion: @escaping (Result<[Game]>) -> Void) {
         Rest.getList(path.game) {
             switch $0 {
-            case .sucess(let jsonArray):
+            case .success(let jsonArray):
                 do {
                     var array = [Game]()
                     for obj in jsonArray {
                         let game = try Game(with: obj)
                         array.append(game)
                     }
-                    completion(.sucess(array))
+                    completion(.success(array))
                     
                 } catch {
                     completion(.failure(error))

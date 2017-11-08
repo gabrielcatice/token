@@ -9,17 +9,15 @@
 import Foundation
 
 class UserService {
-    static let path = URL.User
+    static let path = URL.User.self
     static func fetch(completion: @escaping (Result<User>) -> Void) {
         Rest.get(path.user) {
             switch $0 {
-            case .sucess(let json):
+            case .success(let json):
                 do {
-                   
-                    }
-                    completion(.sucess())
-
-            } catch {
+                    let user = try User(with: json)
+                    completion(.success(user))
+                } catch {
                     completion(.failure(error))
                 }
             case .failure(let error):
