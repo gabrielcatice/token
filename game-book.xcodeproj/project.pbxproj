@@ -25,6 +25,7 @@
 		D3002AD21FB3C90300584663 /* UserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3002AD11FB3C90300584663 /* UserPresenter.swift */; };
 		D3002AD41FB3C91B00584663 /* UserViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3002AD31FB3C91B00584663 /* UserViewModels.swift */; };
 		D3002AD61FB3CACA00584663 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3002AD51FB3CACA00584663 /* UserViewController.swift */; };
+		D33945981FB4E992003164BE /* GameTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D33945971FB4E992003164BE /* GameTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -50,6 +51,7 @@
 		D3002AD11FB3C90300584663 /* UserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresenter.swift; sourceTree = "<group>"; };
 		D3002AD31FB3C91B00584663 /* UserViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModels.swift; sourceTree = "<group>"; };
 		D3002AD51FB3CACA00584663 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
+		D33945971FB4E992003164BE /* GameTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -114,6 +116,7 @@
 				D3002ACC1FB3A05B00584663 /* View Model */,
 				D3002AA91FB3497000584663 /* MainViewController.swift */,
 				D3002AD51FB3CACA00584663 /* UserViewController.swift */,
+				D33945971FB4E992003164BE /* GameTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -306,6 +309,7 @@
 				D3002AC71FB3941500584663 /* GameService.swift in Sources */,
 				D3002AA81FB3497000584663 /* AppDelegate.swift in Sources */,
 				D3002ABE1FB34CD900584663 /* URL.swift in Sources */,
+				D33945981FB4E992003164BE /* GameTableViewCell.swift in Sources */,
 				D3002ACB1FB39F5500584663 /* MainPresenter.swift in Sources */,
 				D3002AC51FB3931600584663 /* Rest.swift in Sources */,
 				D3002AD61FB3CACA00584663 /* UserViewController.swift in Sources */,

@@ -16,12 +16,20 @@ protocol MainDisplayLogic {
 class MainViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
+
     
     var presenter: MainPresentationLogic!
+    var dataSet: [GameViewModel.DisplayedGame] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        //tableView.delegate = self
+        //tableView.dataSource = self
         presenter.askForGames()
     }
     
@@ -39,11 +47,13 @@ class MainViewController: UIViewController {
     }
 }
 
-extension MainViewController: MainDisplayLogic {
+extension MainViewController: MainDisplayLogic{
     func displayGames(viewModel: GameViewModel) {
         
+        dataSet = viewModel.displayedGames
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
+        
         var aux: Int = 0
         repeat {
             print(viewModel.displayedGames[aux].id)
@@ -62,7 +72,19 @@ extension MainViewController: MainDisplayLogic {
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alert.addAction(okAction)
     }
-    
-    
 }
 
+extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSet.count
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameTableViewCell", for: indexPath) as! GameTableViewCell
+        let game = dataSet[indexPath.row]
+        cell.gameName.text = game.name
+        return cell
+    }
+}

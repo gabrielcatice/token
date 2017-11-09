@@ -15,15 +15,25 @@ protocol UserDisplayLogic {
 
 class UserViewController: UIViewController {
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     var presenter: UserPresentationLogic!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var birthdayTextField: UITextField!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var addressTextField: UITextField!
     @IBOutlet weak var cityTextField: UITextField!
     @IBOutlet weak var countryTextField: UITextField!
+    @IBOutlet weak var avatarImage: UIImageView!
     
+    
+    @IBOutlet weak var nameLabel: UILabel!
+    @IBOutlet weak var lastnameLabel: UILabel!
+    @IBOutlet weak var birthdayLabel: UILabel!
+    @IBOutlet weak var emailLabel: UILabel!
+    @IBOutlet weak var addressLabel: UILabel!
+    @IBOutlet weak var cityLabel: UILabel!
+    @IBOutlet weak var countryLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,16 +53,20 @@ extension UserViewController: UserDisplayLogic {
     func displayUser(viewModel: UserViewModel) {
         // Exibir na tela
         activityIndicator.startAnimating()
-        
-        print(viewModel.name)
-        print(viewModel.lastname)
+        nameTextField.text = viewModel.name
+        if viewModel.lastname == "" {
+            lastnameLabel.isHidden = true
+            lastNameTextField.isHidden = true
+        } else {
+            lastNameTextField.text = viewModel.lastname
+        }
+        //visualizar avatar
         print(viewModel.avatar)
-        print(viewModel.email)
-        print(viewModel.birthday)
-        print(viewModel.address)
-        print(viewModel.city)
-        print(viewModel.country)
-        
+        birthdayTextField.text = viewModel.birthday
+        emailTextField.text = viewModel.email
+        addressTextField.text = viewModel.address
+        cityTextField.text = viewModel.city
+        countryTextField.text = viewModel.country
         activityIndicator.stopAnimating()
     }
     

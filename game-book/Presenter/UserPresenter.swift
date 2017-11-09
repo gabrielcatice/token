@@ -17,7 +17,18 @@ protocol UserPresentationLogic {
 class UserPresenter {
     var viewController: UserDisplayLogic!
     func mapUser(_ user: User) -> UserViewModel {
-        return UserViewModel(name: user.name ?? "", lastname: user.lastname ?? "", avatar: user.avatar ?? "", email: user.email ?? "", birthday: user.birthday ?? "", address: user.address ?? "", city: user.city ?? "", country: user.country ?? "")
+        var stringDate = ""
+        let strTime = user.birthday
+        let formatter = DateFormatter()
+        formatter.dateFormat = "yyyy-MM-dd'T'hh:mm:ssZ"
+        if let newDate = formatter.date(from: strTime!) {
+            formatter.dateFormat = "dd/MM/yyyy"
+            stringDate = formatter.string(from: newDate)
+            
+        }
+       
+        
+        return UserViewModel(name: user.name ?? "", lastname: user.lastname ?? "", avatar: user.avatar ?? "", email: user.email ?? "", birthday: stringDate, address: user.address ?? "", city: user.city ?? "", country: user.country ?? "")
     }
     
 }
@@ -34,4 +45,12 @@ extension UserPresenter: UserPresentationLogic {
         }
     }
 }
+//extension Date {
+//    func dayFormatted() -> String {
+//        let dateFormatter = DateFormatter()
+//        dateFormatter.dateFormat = "dd/MM/yyyy"
+//        dateFormatter.timeStyle = .none
+//        return dateFormatter.string(from: self)
+//    }
+//}
 
