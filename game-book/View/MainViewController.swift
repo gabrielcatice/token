@@ -15,6 +15,8 @@ protocol MainDisplayLogic {
 
 class MainViewController: UIViewController {
     
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     var presenter: MainPresentationLogic!
     
     override func viewDidLoad() {
@@ -23,11 +25,25 @@ class MainViewController: UIViewController {
         presenter.askForGames()
     }
     
+    override func awakeFromNib() {
+        super.awakeFromNib()
+        let presenter = MainPresenter()
+        
+        
+        presenter.viewController = self
+        self.presenter = presenter
+    }
+    
+    @IBAction func userInfoPressed(_ sender: Any?) {
+        performSegue(withIdentifier: "goToUser", sender: nil)
+    }
 }
 
 extension MainViewController: MainDisplayLogic {
     func displayGames(viewModel: GameViewModel) {
         
+        activityIndicator.isHidden = false
+        activityIndicator.startAnimating()
         var aux: Int = 0
         repeat {
             print(viewModel.displayedGames[aux].id)
@@ -38,6 +54,7 @@ extension MainViewController: MainDisplayLogic {
             print(viewModel.displayedGames[aux].platforms)
             aux = aux + 1
         } while aux < 14
+        activityIndicator.stopAnimating()
     }
     
     func displayError() {
@@ -45,5 +62,7 @@ extension MainViewController: MainDisplayLogic {
         let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
         alert.addAction(okAction)
     }
+    
+    
 }
 

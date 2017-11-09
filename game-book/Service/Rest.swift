@@ -105,7 +105,7 @@ extension Rest {
         
         // Convert JSON data to Swift JSON Object
 
-        let responseJson = try! JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : AnyObject]
+        let responseJson = try! JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.allowFragments) as! JSONObject
         guard let jsonArray = responseJson["games"] as? [JSONObject]
             else { throw NSError() }
         return jsonArray
