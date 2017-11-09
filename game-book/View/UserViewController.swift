@@ -28,8 +28,14 @@ class UserViewController: UIViewController {
 extension UserViewController: UserDisplayLogic {
     func displayUser(viewModel: UserViewModel) {
         // Exibir na tela
-        print("you're here")
         print(viewModel.name)
+        print(viewModel.lastname)
+        print(viewModel.avatar)
+        print(viewModel.email)
+        print(viewModel.birthday)
+        print(viewModel.address)
+        print(viewModel.city)
+        print(viewModel.country)
     }
     
     func displayError() {

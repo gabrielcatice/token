@@ -28,7 +28,7 @@ extension UserPresenter: UserPresentationLogic {
             switch result {
             case .success(let user):
                 self.viewController.displayUser(viewModel: self.mapUser(user))
-            case .failure(let error):
+            case .failure( _):
                 self.viewController.displayError()
             }
         }

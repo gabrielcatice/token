@@ -22,13 +22,22 @@ class MainViewController: UIViewController {
         
         presenter.askForGames()
     }
-
+    
 }
 
 extension MainViewController: MainDisplayLogic {
     func displayGames(viewModel: GameViewModel) {
-        // Exibir na tela
-        // label.text = gamesViewModel.displayedGames[row].name
+        
+        var aux: Int = 0
+        repeat {
+            print(viewModel.displayedGames[aux].id)
+            print(viewModel.displayedGames[aux].name)
+            print(viewModel.displayedGames[aux].imageURL)
+            print(viewModel.displayedGames[aux].releaseDate)
+            print(viewModel.displayedGames[aux].trailerURL)
+            print(viewModel.displayedGames[aux].platforms)
+            aux = aux + 1
+        } while aux < 14
     }
     
     func displayError() {

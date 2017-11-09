@@ -12,11 +12,6 @@ import Alamofire
 typealias JSONObject = [String: Any]
 typealias JSONResult = Result<JSONObject>
 
-
-protocol JSONValidation {
-    static func JSON(with data: Data?) throws -> JSONObject
-}
-
 class Rest {
     
     static let path = URL.baseURL
@@ -35,30 +30,33 @@ class Rest {
     static let alamofireManager = Alamofire.SessionManager(configuration: configuration)
     
     
-    private static func handle(_ response: Alamofire.DataResponse<Data>, completion: @escaping (JSONResult) -> Void) {
+    private static func handle(_ response: Alamofire.DataResponse<Data>, completionObject: ((Result<JSONObject>) -> Void)? = nil, completionArray: ((Result<[JSONObject]>) -> Void)? = nil) {
         
+       
         switch response.result {
         case .success(let value):
             
-            do {
-                let json = try JSON(with: value)
-                completion(.success(json))
-            } catch {
-                completion(.failure(NSError()))
+            if let json = try? jsonObject(with: value) {
+                completionObject?(.success(json))
+            } else {
+                completionObject?(.failure(NSError()))
             }
             
-        case .failure(let error):
-            if let urlError = error as? URLError {
-                completion(.failure(NSError()))
-            } else if let afError = error as? AFError, let code = afError.responseCode {
-                completion(.failure(NSError()))
+            if let jsonArray = try? jsonArray(with: value) {
+                completionArray?(.success(jsonArray))
             } else {
-                completion(.failure(NSError()))
+
+                completionArray?(.failure(NSError()))
             }
+            
+            
+        case .failure( _):
+            completionObject?(.failure(NSError()))
+            completionArray?(.failure(NSError()))
         }
     }
     
-    static func dataRequest(_ url: String, method: Alamofire.HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders?, completion: @escaping (JSONResult) -> Void) {
+    static func dataRequest(_ url: String, method: Alamofire.HTTPMethod, parameters: Parameters?, encoding: ParameterEncoding, headers: HTTPHeaders? = nil, completionObject: ((Result<JSONObject>) -> Void)? = nil, completionArray: ((Result<[JSONObject]>) -> Void)? = nil) {
         
         
         var completeHeader: Parameters = [:]
@@ -70,23 +68,26 @@ class Rest {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         alamofireManager.request("\(path)\(url)", method: method, parameters: parameters, encoding: encoding).validate(statusCode: 200..<300).responseData { (response) in
-            handle(response, completion: completion)
+            handle(response, completionObject: completionObject, completionArray: completionArray)
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
         }
     }
     
-    static func get(_ url: String, completion: @escaping (JSONResult) -> Void) {
+    static func get(_ url: String, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders? = nil, completion: @escaping (Result<JSONObject>) -> Void) {
+        dataRequest(url, method: .get, parameters: parameters, encoding: encoding, headers: headers, completionObject: completion)
+        
         
     }
-    static func getList(_ url: String, completion: @escaping (Result<[JSONObject]>) -> Void) {
+    static func getList(_ url: String, parameters: Parameters? = nil, encoding: ParameterEncoding = URLEncoding.default, headers: HTTPHeaders? = nil, completion: @escaping (Result<[JSONObject]>) -> Void) {
+        dataRequest(url, method: .get, parameters: parameters, encoding: encoding, headers: headers, completionArray: completion)
         
     }
     
     // MARK: - JSON Validation
 }
 
-extension Rest : JSONValidation {
-    static func JSON(with data: Data?) throws -> JSONObject {
+extension Rest {
+    static func jsonObject(with data: Data?) throws -> JSONObject {
         guard let responseData = data
             else { throw NSError() }
         
@@ -97,5 +98,16 @@ extension Rest : JSONValidation {
         
         return jsonObject
     }
-}
+    
+    static func jsonArray(with data: Data?) throws -> [JSONObject] {
+        guard let responseData = data
+            else { throw NSError() }
+        
+        // Convert JSON data to Swift JSON Object
 
+        let responseJson = try! JSONSerialization.jsonObject(with: responseData, options: JSONSerialization.ReadingOptions.allowFragments) as! [String : AnyObject]
+        guard let jsonArray = responseJson["games"] as? [JSONObject]
+            else { throw NSError() }
+        return jsonArray
+    }
+}

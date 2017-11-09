@@ -18,11 +18,8 @@ struct Game {
     let platforms: [String]?
     
     init(with json: JSONObject) throws {
-        guard let id = json["id"] as? Int else {
-            throw NSError()
-        }
         
-        self.id = id
+        id = json["id"] as? Int
         name = json["name"] as? String
         imageURL = json["image"] as? String
         releaseDate = json["release_date"] as? String
