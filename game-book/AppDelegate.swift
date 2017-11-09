@@ -16,8 +16,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
-        let presenter = MainPresenter()
-        let rootViewController: MainViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! MainViewController
+        let presenter = UserPresenter()
+        let rootViewController: UserViewController = UIStoryboard(name: "Main", bundle: nil).instantiateInitialViewController() as! UserViewController
         
         rootViewController.presenter = presenter
         presenter.viewController = rootViewController

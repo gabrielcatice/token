@@ -11,8 +11,12 @@ import Foundation
 struct MainViewModels {
     struct GameViewModel {
         struct DisplayedGame {
+            let id: Int
             let name: String
-            let date: String
+            let imageURL: String
+            let releaseDate: String
+            let trailerURL: String
+            let platforms: [String]
         }
         
         

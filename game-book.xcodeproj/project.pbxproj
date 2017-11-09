@@ -22,6 +22,9 @@
 		D3002ACB1FB39F5500584663 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3002ACA1FB39F5500584663 /* MainPresenter.swift */; };
 		D3002ACE1FB3A06F00584663 /* MainViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3002ACD1FB3A06F00584663 /* MainViewModels.swift */; };
 		D3002AD01FB3B56600584663 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3002ACF1FB3B56600584663 /* UserService.swift */; };
+		D3002AD21FB3C90300584663 /* UserPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3002AD11FB3C90300584663 /* UserPresenter.swift */; };
+		D3002AD41FB3C91B00584663 /* UserViewModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3002AD31FB3C91B00584663 /* UserViewModels.swift */; };
+		D3002AD61FB3CACA00584663 /* UserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D3002AD51FB3CACA00584663 /* UserViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +47,9 @@
 		D3002ACA1FB39F5500584663 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
 		D3002ACD1FB3A06F00584663 /* MainViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModels.swift; sourceTree = "<group>"; };
 		D3002ACF1FB3B56600584663 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		D3002AD11FB3C90300584663 /* UserPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserPresenter.swift; sourceTree = "<group>"; };
+		D3002AD31FB3C91B00584663 /* UserViewModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewModels.swift; sourceTree = "<group>"; };
+		D3002AD51FB3CACA00584663 /* UserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 			isa = PBXGroup;
 			children = (
 				D3002ACA1FB39F5500584663 /* MainPresenter.swift */,
+				D3002AD11FB3C90300584663 /* UserPresenter.swift */,
 			);
 			path = Presenter;
 			sourceTree = "<group>";
@@ -106,6 +113,7 @@
 			children = (
 				D3002ACC1FB3A05B00584663 /* View Model */,
 				D3002AA91FB3497000584663 /* MainViewController.swift */,
+				D3002AD51FB3CACA00584663 /* UserViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -142,6 +150,7 @@
 			isa = PBXGroup;
 			children = (
 				D3002ACD1FB3A06F00584663 /* MainViewModels.swift */,
+				D3002AD31FB3C91B00584663 /* UserViewModels.swift */,
 			);
 			path = "View Model";
 			sourceTree = "<group>";
@@ -292,15 +301,18 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D3002AD41FB3C91B00584663 /* UserViewModels.swift in Sources */,
 				D3002AAA1FB3497000584663 /* MainViewController.swift in Sources */,
 				D3002AC71FB3941500584663 /* GameService.swift in Sources */,
 				D3002AA81FB3497000584663 /* AppDelegate.swift in Sources */,
 				D3002ABE1FB34CD900584663 /* URL.swift in Sources */,
 				D3002ACB1FB39F5500584663 /* MainPresenter.swift in Sources */,
 				D3002AC51FB3931600584663 /* Rest.swift in Sources */,
+				D3002AD61FB3CACA00584663 /* UserViewController.swift in Sources */,
 				D3002AD01FB3B56600584663 /* UserService.swift in Sources */,
 				D3002AC21FB34E9F00584663 /* User.swift in Sources */,
 				D3002AC91FB396CE00584663 /* Result.swift in Sources */,
+				D3002AD21FB3C90300584663 /* UserPresenter.swift in Sources */,
 				D3002AC01FB34E8C00584663 /* Game.swift in Sources */,
 				D3002ACE1FB3A06F00584663 /* MainViewModels.swift in Sources */,
 			);
