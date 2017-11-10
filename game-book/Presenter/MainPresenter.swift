@@ -8,8 +8,6 @@
 
 import Foundation
 
-typealias GameViewModel = MainViewModels.GameViewModel
-
 protocol MainPresentationLogic {
     func askForGames()
 }
@@ -17,12 +15,16 @@ protocol MainPresentationLogic {
 class MainPresenter {
     var viewController: MainDisplayLogic!
     
-    func mapGames(_ games: [Game]) -> GameViewModel {
+    func mapGames(_ games: [Game]) -> MainModels.GetGameList.ViewModel {
         
         let displayedGames = games.map { game in
-            return GameViewModel.DisplayedGame(id: game.id ?? 0, name: game.name ?? "", imageURL: game.imageURL ?? "", releaseDate: game.releaseDate ?? "", trailerURL: game.trailerURL ?? "", platforms: game.platforms ?? [])
+            return DisplayedGame(id: game.id ?? 0,
+                                 name: game.name ?? "",
+                                 imageURL: game.imageURL ?? "",
+                                 platforms: game.platforms ?? [])
         }
-        return GameViewModel(displayedGames: displayedGames)
+        let viewModel = MainModels.GetGameList.ViewModel(displayedGames: displayedGames)
+        return viewModel
     }
 }
 

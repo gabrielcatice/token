@@ -11,6 +11,23 @@ import Foundation
 class GameService {
     
     static let path = URL.Game.self
+    
+    static func getItem(with id: Int, completion: @escaping (Result<Game>) -> Void){
+        GameService.fetch { (result) in
+            switch result {
+            case .success(let games):
+                if let game = games.first(where: {$0.id == id}) {
+                    completion(.success(game))
+                } else {
+                    completion(.failure(NSError()))
+                }
+            case .failure(let error):
+                
+                completion(.failure(error))
+            }
+        }
+    }
+    
     static func fetch(completion: @escaping (Result<[Game]>) -> Void) {
         
         Rest.getList(path.game) {

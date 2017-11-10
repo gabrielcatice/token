@@ -7,9 +7,10 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol MainDisplayLogic {
-    func displayGames(viewModel: GameViewModel)
+    func displayGames(viewModel: MainModels.GetGameList.ViewModel)
     func displayError()
 }
 
@@ -20,19 +21,16 @@ class MainViewController: UIViewController {
     
     
     var presenter: MainPresentationLogic!
-    var dataSet: [GameViewModel.DisplayedGame] = [] {
+    var dataSet: [DisplayedGame] = [] {
         didSet {
             tableView.reloadData()
         }
     }
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        //tableView.delegate = self
-        //tableView.dataSource = self
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         presenter.askForGames()
     }
-    
     override func awakeFromNib() {
         super.awakeFromNib()
         let presenter = MainPresenter()
@@ -48,22 +46,11 @@ class MainViewController: UIViewController {
 }
 
 extension MainViewController: MainDisplayLogic{
-    func displayGames(viewModel: GameViewModel) {
+    func displayGames(viewModel: MainModels.GetGameList.ViewModel) {
         
         dataSet = viewModel.displayedGames
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
-        
-        var aux: Int = 0
-        repeat {
-            print(viewModel.displayedGames[aux].id)
-            print(viewModel.displayedGames[aux].name)
-            print(viewModel.displayedGames[aux].imageURL)
-            print(viewModel.displayedGames[aux].releaseDate)
-            print(viewModel.displayedGames[aux].trailerURL)
-            print(viewModel.displayedGames[aux].platforms)
-            aux = aux + 1
-        } while aux < 14
         activityIndicator.stopAnimating()
     }
     
@@ -73,8 +60,15 @@ extension MainViewController: MainDisplayLogic{
         alert.addAction(okAction)
     }
 }
-
-extension MainViewController: UITableViewDelegate, UITableViewDataSource {
+extension MainViewController {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "goToDetail" {
+            let game = sender as! DisplayedGame
+            (segue.destination as! GameDetailViewController).game = game
+        }
+    }
+}
+extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -82,10 +76,20 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         return dataSet.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GameTableViewCell", for: indexPath) as! GameTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameTableViewCell") as! GameTableViewCell
         let game = dataSet[indexPath.row]
+        let platformsArray = game.platforms
+        let platformsJoined = platformsArray.joined(separator: ", ")
+        
+        //let coverImage = URL(string: game.imageURL)
+        
+        //cell.gameImage.kf.setImage(with: coverImage)
         cell.gameName.text = game.name
-        cell.gamePlatform.text = "gamePlatforms"
+        cell.gamePlatform.text = platformsJoined
         return cell
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let game = dataSet[indexPath.row]
+        performSegue(withIdentifier: "goToDetail", sender: game)
     }
 }

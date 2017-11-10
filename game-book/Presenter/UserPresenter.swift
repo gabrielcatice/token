@@ -8,7 +8,7 @@
 
 import Foundation
 
-typealias UserViewModel = UserViewModels.UserViewModel
+typealias UserViewModel = UserModels.GetUser
 
 protocol UserPresentationLogic {
     func askForUser()
@@ -16,7 +16,7 @@ protocol UserPresentationLogic {
 
 class UserPresenter {
     var viewController: UserDisplayLogic!
-    func mapUser(_ user: User) -> UserViewModel {
+    func mapUser(_ user: User) -> UserModels.GetUser.ViewModel {
         var stringDate = ""
         let strTime = user.birthday
         let formatter = DateFormatter()
@@ -27,10 +27,18 @@ class UserPresenter {
             
         }
        
+        let user = DisplayedUser (name: user.name ?? "",
+                             lastname: user.lastname ?? "",
+                             avatar: user.avatar ?? "",
+                             email: user.email ?? "",
+                             birthday: stringDate,
+                             address: user.address ?? "",
+                             city: user.city ?? "",
+                             country: user.country ?? "")
         
-        return UserViewModel(name: user.name ?? "", lastname: user.lastname ?? "", avatar: user.avatar ?? "", email: user.email ?? "", birthday: stringDate, address: user.address ?? "", city: user.city ?? "", country: user.country ?? "")
+        let viewModel = UserModels.GetUser.ViewModel(user: user)
+        return viewModel
     }
-    
 }
 
 extension UserPresenter: UserPresentationLogic {

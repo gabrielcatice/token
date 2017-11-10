@@ -9,7 +9,7 @@
 import UIKit
 
 protocol UserDisplayLogic {
-    func displayUser(viewModel: UserViewModel)
+    func displayUser(viewModel: UserModels.GetUser.ViewModel )
     func displayError()
 }
 
@@ -50,23 +50,23 @@ class UserViewController: UIViewController {
 }
 
 extension UserViewController: UserDisplayLogic {
-    func displayUser(viewModel: UserViewModel) {
+    func displayUser(viewModel: UserModels.GetUser.ViewModel) {
         // Exibir na tela
         activityIndicator.startAnimating()
-        nameTextField.text = viewModel.name
-        if viewModel.lastname == "" {
+        nameTextField.text = viewModel.user.name
+        if viewModel.user.lastname == "" {
             lastnameLabel.isHidden = true
             lastNameTextField.isHidden = true
         } else {
-            lastNameTextField.text = viewModel.lastname
+            lastNameTextField.text = viewModel.user.lastname
         }
         //visualizar avatar
-        print(viewModel.avatar)
-        birthdayTextField.text = viewModel.birthday
-        emailTextField.text = viewModel.email
-        addressTextField.text = viewModel.address
-        cityTextField.text = viewModel.city
-        countryTextField.text = viewModel.country
+        print(viewModel.user.avatar)
+        birthdayTextField.text = viewModel.user.birthday
+        emailTextField.text = viewModel.user.email
+        addressTextField.text = viewModel.user.address
+        cityTextField.text = viewModel.user.city
+        countryTextField.text = viewModel.user.country
         activityIndicator.stopAnimating()
     }
     
