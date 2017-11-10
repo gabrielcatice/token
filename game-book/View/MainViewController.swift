@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var tableView: UITableView!
-
+    
     
     var presenter: MainPresentationLogic!
     var dataSet: [GameViewModel.DisplayedGame] = [] {
@@ -85,6 +85,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameTableViewCell", for: indexPath) as! GameTableViewCell
         let game = dataSet[indexPath.row]
         cell.gameName.text = game.name
+        cell.gamePlatform.text = "gamePlatforms"
         return cell
     }
 }

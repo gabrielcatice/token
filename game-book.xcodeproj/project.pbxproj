@@ -113,10 +113,10 @@
 		D3002ABA1FB3499400584663 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				D33945991FB5B783003164BE /* Game Components */,
 				D3002ACC1FB3A05B00584663 /* View Model */,
 				D3002AA91FB3497000584663 /* MainViewController.swift */,
 				D3002AD51FB3CACA00584663 /* UserViewController.swift */,
-				D33945971FB4E992003164BE /* GameTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -156,6 +156,14 @@
 				D3002AD31FB3C91B00584663 /* UserViewModels.swift */,
 			);
 			path = "View Model";
+			sourceTree = "<group>";
+		};
+		D33945991FB5B783003164BE /* Game Components */ = {
+			isa = PBXGroup;
+			children = (
+				D33945971FB4E992003164BE /* GameTableViewCell.swift */,
+			);
+			path = "Game Components";
 			sourceTree = "<group>";
 		};
 		FE1454C390779C8D463D0606 /* Frameworks */ = {
