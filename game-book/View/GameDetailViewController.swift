@@ -47,7 +47,7 @@ extension GameDetailViewController: GameDetailDisplayLogic {
         
         let gameImage = URL(string: game.imageURL)
         coverImage.kf.indicatorType = .activity
-        coverImage.kf.setImage(with: gameImage)
+        coverImage.kf.setImage(with: gameImage, placeholder: #imageLiteral(resourceName: "MaxGames"))
     }
     func displayError() {
 

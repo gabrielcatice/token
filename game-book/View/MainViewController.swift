@@ -81,7 +81,7 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
         
         let coverImage = URL(string: game.imageURL)!
         cell.gameImage.kf.indicatorType = .activity
-        cell.gameImage.kf.setImage(with: coverImage)
+        cell.gameImage.kf.setImage(with: coverImage, placeholder: #imageLiteral(resourceName: "MaxGames"))
         cell.gameName.text = game.name
         cell.gamePlatform.text = game.platforms
         return cell

@@ -17,7 +17,16 @@
                     <view key="view" alpha="0.94999999999999996" contentMode="scaleToFill" id="Ze5-6b-2t3">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.79567101883561642" colorSpace="custom" customColorSpace="sRGB"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MaxGames" translatesAutoresizingMaskIntoConstraints="NO" id="8IV-kr-uRH">
+                                <rect key="frame" x="31" y="274" width="312" height="118"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="8IV-kr-uRH" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="CUw-wb-5oI"/>
+                            <constraint firstItem="8IV-kr-uRH" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="EfM-9O-MI7"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                 </viewController>
@@ -26,4 +35,7 @@
             <point key="canvasLocation" x="52" y="374.66266866566718"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="MaxGames" width="312" height="118"/>
+    </resources>
 </document>

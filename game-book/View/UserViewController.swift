@@ -69,7 +69,7 @@ extension UserViewController: UserDisplayLogic {
             avatarImage.image = #imageLiteral(resourceName: "MaxGames")
         } else {
             avatarImage.kf.indicatorType = .activity
-            avatarImage.kf.setImage(with: userAvatar)
+            avatarImage.kf.setImage(with: userAvatar, placeholder: #imageLiteral(resourceName: "MaxGames"))
         }
         birthdayTextField.text = viewModel.user.birthday
         emailTextField.text = viewModel.user.email
