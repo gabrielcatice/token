@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct URL {
+struct URLs {
     
     static let baseURL = "https://dl.dropboxusercontent.com/s/"
     

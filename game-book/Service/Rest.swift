@@ -14,7 +14,7 @@ typealias JSONResult = Result<JSONObject>
 
 class Rest {
     
-    static let path = URL.baseURL
+    static let path = URLs.baseURL
     enum Configuration: Double {
         case timeoutIntervalForRequest = 20.0
         case timeoutIntervalForResource = 21.0
@@ -52,7 +52,7 @@ class Rest {
             
         case .failure( _):
             completionObject?(.failure(NSError()))
-            completionArray?(.failure(NSError()))
+            completionArray?(.failure(NSError())) //partial apply for closure
         }
     }
     

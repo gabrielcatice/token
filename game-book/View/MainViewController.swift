@@ -48,9 +48,9 @@ class MainViewController: UIViewController {
 extension MainViewController: MainDisplayLogic{
     func displayGames(viewModel: MainModels.GetGameList.ViewModel) {
         
-        dataSet = viewModel.displayedGames
         activityIndicator.isHidden = false
         activityIndicator.startAnimating()
+        dataSet = viewModel.displayedGames
         activityIndicator.stopAnimating()
     }
     
@@ -76,20 +76,19 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
         return dataSet.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "GameTableViewCell") as! GameTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "GameTableViewCell", for: indexPath) as! GameTableViewCell
         let game = dataSet[indexPath.row]
-        let platformsArray = game.platforms
-        let platformsJoined = platformsArray.joined(separator: ", ")
         
-        //let coverImage = URL(string: game.imageURL)
-        
-        //cell.gameImage.kf.setImage(with: coverImage)
+        let coverImage = URL(string: game.imageURL)!
+        cell.gameImage.kf.indicatorType = .activity
+        cell.gameImage.kf.setImage(with: coverImage)
         cell.gameName.text = game.name
-        cell.gamePlatform.text = platformsJoined
+        cell.gamePlatform.text = game.platforms
         return cell
     }
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let game = dataSet[indexPath.row]
+        
         performSegue(withIdentifier: "goToDetail", sender: game)
     }
 }

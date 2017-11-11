@@ -17,11 +17,15 @@ class MainPresenter {
     
     func mapGames(_ games: [Game]) -> MainModels.GetGameList.ViewModel {
         
-        let displayedGames = games.map { game in
+        let displayedGames = games.map { game -> DisplayedGame in
+            let platformsArray = game.platforms
+            let platformsJoined = platformsArray?.joined(separator: ", ")
             return DisplayedGame(id: game.id ?? 0,
                                  name: game.name ?? "",
                                  imageURL: game.imageURL ?? "",
-                                 platforms: game.platforms ?? [])
+                                 releaseDate: game.releaseDate ?? "",
+                                 trailerURL: game.trailerURL ?? "",
+                                 platforms: platformsJoined ?? "")
         }
         let viewModel = MainModels.GetGameList.ViewModel(displayedGames: displayedGames)
         return viewModel

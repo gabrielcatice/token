@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 protocol GameDetailDisplayLogic {
     func displayGame(viewModel: GameDetailsModels.GetGameDetail.ViewModel)
@@ -14,7 +15,12 @@ protocol GameDetailDisplayLogic {
 }
 
 class GameDetailViewController: UIViewController {
-
+    @IBOutlet weak var coverImage: UIImageView!
+    
+    @IBOutlet weak var gameTitle: UILabel!
+    @IBOutlet weak var gamePlatforms: UILabel!
+    
+    @IBOutlet weak var releaseDate: UILabel!
     var game: DisplayedGame!
     var presenter: GameDetailPresentationLogic!
     
@@ -35,7 +41,13 @@ class GameDetailViewController: UIViewController {
 
 extension GameDetailViewController: GameDetailDisplayLogic {
     func displayGame(viewModel: GameDetailsModels.GetGameDetail.ViewModel) {
+        gameTitle.text = game.name
+        gamePlatforms.text = game.platforms
+        releaseDate.text = game.releaseDate
         
+        let gameImage = URL(string: game.imageURL)
+        coverImage.kf.indicatorType = .activity
+        coverImage.kf.setImage(with: gameImage)
     }
     func displayError() {
 

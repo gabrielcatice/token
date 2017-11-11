@@ -9,7 +9,7 @@
 import Foundation
 
 class UserService {
-    static let path = URL.User.self
+    static let path = URLs.User.self
     static func fetch(completion: @escaping (Result<User>) -> Void) {
         Rest.get(path.user) {
             switch $0 {

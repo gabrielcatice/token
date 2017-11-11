@@ -10,7 +10,7 @@ import Foundation
 
 class GameService {
     
-    static let path = URL.Game.self
+    static let path = URLs.Game.self
     
     static func getItem(with id: Int, completion: @escaping (Result<Game>) -> Void){
         GameService.fetch { (result) in

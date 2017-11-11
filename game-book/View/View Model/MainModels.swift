@@ -12,7 +12,9 @@ struct DisplayedGame {
     let id: Int
     let name: String
     let imageURL: String
-    let platforms: [String]
+    let releaseDate: String
+    let trailerURL: String
+    let platforms: String
 }
 
 struct MainModels {

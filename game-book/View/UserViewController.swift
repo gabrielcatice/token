@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Kingfisher
+
 
 protocol UserDisplayLogic {
     func displayUser(viewModel: UserModels.GetUser.ViewModel )
@@ -61,7 +63,14 @@ extension UserViewController: UserDisplayLogic {
             lastNameTextField.text = viewModel.user.lastname
         }
         //visualizar avatar
-        print(viewModel.user.avatar)
+        let userAvatar = URL(string: viewModel.user.avatar)
+        
+        if userAvatar == nil {
+            avatarImage.image = #imageLiteral(resourceName: "MaxGames")
+        } else {
+            avatarImage.kf.indicatorType = .activity
+            avatarImage.kf.setImage(with: userAvatar)
+        }
         birthdayTextField.text = viewModel.user.birthday
         emailTextField.text = viewModel.user.email
         addressTextField.text = viewModel.user.address
