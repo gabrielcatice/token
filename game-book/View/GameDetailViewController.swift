@@ -50,6 +50,12 @@ extension GameDetailViewController: GameDetailDisplayLogic {
         coverImage.kf.setImage(with: gameImage, placeholder: #imageLiteral(resourceName: "MaxGames"))
     }
     func displayError() {
-
+        let alert = UIAlertController(title: "Error", message: "Could not load your game in detail :(", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
+            let request = GameDetailsModels.GetGameDetail.Request(id: self.game.id)
+            self.presenter.askForGame(request: request)
+        }
+        alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }

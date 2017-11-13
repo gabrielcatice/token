@@ -16,20 +16,32 @@ protocol MainDisplayLogic {
 
 class MainViewController: UIViewController {
     
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     @IBOutlet weak var tableView: UITableView!
     
-    
+    var refreshControl: UIRefreshControl!
     var presenter: MainPresentationLogic!
     var dataSet: [DisplayedGame] = [] {
         didSet {
             tableView.reloadData()
         }
     }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        refreshControl = UIRefreshControl()
+        self.refreshControl.addTarget(self, action: #selector(MainViewController.refresh(sender:)), for: .valueChanged)
+        tableView.addSubview(refreshControl) // not required when using UITableViewController
+    }
+    
+    @objc func refresh(sender: AnyObject) {
+        self.getGames()
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        presenter.askForGames()
+        refreshControl.beginRefreshing()
+        self.getGames()
     }
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -38,6 +50,9 @@ class MainViewController: UIViewController {
         
         presenter.viewController = self
         self.presenter = presenter
+    }
+    func getGames() {
+        presenter.askForGames()
     }
     
     @IBAction func userInfoPressed(_ sender: Any?) {
@@ -48,16 +63,17 @@ class MainViewController: UIViewController {
 extension MainViewController: MainDisplayLogic{
     func displayGames(viewModel: MainModels.GetGameList.ViewModel) {
         
-        activityIndicator.isHidden = false
-        activityIndicator.startAnimating()
         dataSet = viewModel.displayedGames
-        activityIndicator.stopAnimating()
+        refreshControl.endRefreshing()
     }
     
     func displayError() {
-        let alert = UIAlertController(title: "Erro", message: "Erro", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        let alert = UIAlertController(title: "Error", message: "Could not load your game list :(", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
+            self.getGames()
+        }
         alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }
 extension MainViewController {

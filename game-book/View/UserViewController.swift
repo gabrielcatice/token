@@ -40,7 +40,7 @@ class UserViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        presenter.askForUser()
+        self.getUser()
     }
     
     override func awakeFromNib() {
@@ -48,6 +48,10 @@ class UserViewController: UIViewController {
         let presenter = UserPresenter()
         presenter.viewController = self
         self.presenter = presenter
+    }
+    
+    func getUser() {
+        presenter.askForUser()
     }
 }
 
@@ -80,8 +84,11 @@ extension UserViewController: UserDisplayLogic {
     }
     
     func displayError() {
-        let alert = UIAlertController(title: "Erro", message: "Erro", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel, handler: nil)
+        let alert = UIAlertController(title: "Error", message: "Could not load your info :(", preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
+            self.getUser()
+        }
         alert.addAction(okAction)
+        present(alert, animated: true, completion: nil)
     }
 }
