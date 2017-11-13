@@ -58,37 +58,67 @@ class UserViewController: UIViewController {
 extension UserViewController: UserDisplayLogic {
     func displayUser(viewModel: UserModels.GetUser.ViewModel) {
         // Exibir na tela
+        let userAvatar = URL(string: viewModel.user.avatar)
         activityIndicator.startAnimating()
-        nameTextField.text = viewModel.user.name
+        
+        if viewModel.user.name == "" {
+            nameLabel.isHidden = true
+            nameTextField.isHidden = true
+        } else {
+            nameTextField.text = viewModel.user.name
+        }
         if viewModel.user.lastname == "" {
             lastnameLabel.isHidden = true
             lastNameTextField.isHidden = true
         } else {
             lastNameTextField.text = viewModel.user.lastname
         }
-        //visualizar avatar
-        let userAvatar = URL(string: viewModel.user.avatar)
-        
-        if userAvatar == nil {
-            avatarImage.image = #imageLiteral(resourceName: "MaxGames")
+        avatarImage.kf.indicatorType = .activity
+        avatarImage.kf.setImage(with: userAvatar, placeholder: #imageLiteral(resourceName: "MaxGames"))
+        if viewModel.user.birthday == "" {
+            birthdayLabel.isHidden = true
+            birthdayTextField.isHidden = true
         } else {
-            avatarImage.kf.indicatorType = .activity
-            avatarImage.kf.setImage(with: userAvatar, placeholder: #imageLiteral(resourceName: "MaxGames"))
+            birthdayTextField.text = viewModel.user.birthday
         }
-        birthdayTextField.text = viewModel.user.birthday
-        emailTextField.text = viewModel.user.email
-        addressTextField.text = viewModel.user.address
-        cityTextField.text = viewModel.user.city
-        countryTextField.text = viewModel.user.country
+        if viewModel.user.email == "" {
+            emailLabel.isHidden = true
+            emailTextField.isHidden = true
+        } else {
+            emailTextField.text = viewModel.user.email
+        }
+        if viewModel.user.address == "" {
+            addressLabel.isHidden = true
+            addressTextField.isHidden = true
+        } else {
+            addressTextField.text = viewModel.user.address
+        }
+        if viewModel.user.city == "" {
+            cityLabel.isHidden = true
+            cityTextField.isHidden = true
+        } else {
+            cityTextField.text = viewModel.user.city
+        }
+        if viewModel.user.country == "" {
+            countryLabel.isHidden = true
+            countryTextField.isHidden = true
+        } else {
+            countryTextField.text = viewModel.user.country
+        }
+        
         activityIndicator.stopAnimating()
     }
     
     func displayError() {
         let alert = UIAlertController(title: "Error", message: "Could not load your info :(", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
+        let okAction = UIAlertAction(title: "Try Again", style: .cancel) { _ in
             self.getUser()
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
+            self.activityIndicator.stopAnimating()
+        }
         alert.addAction(okAction)
+        alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
 }

@@ -41,21 +41,35 @@ class GameDetailViewController: UIViewController {
 
 extension GameDetailViewController: GameDetailDisplayLogic {
     func displayGame(viewModel: GameDetailsModels.GetGameDetail.ViewModel) {
-        gameTitle.text = game.name
-        gamePlatforms.text = game.platforms
-        releaseDate.text = game.releaseDate
+       let gameImage = URL(string: game.imageURL)
         
-        let gameImage = URL(string: game.imageURL)
+        if game.name == "" {
+            gameTitle.isHidden = true
+        } else {
+            gameTitle.text = game.name
+        }
+        if game.platforms == "" {
+            gamePlatforms.isHidden = true
+        } else {
+            gamePlatforms.text = game.platforms
+        }
+        if game.releaseDate == "" {
+            releaseDate.isHidden = true
+        } else {
+           releaseDate.text = game.releaseDate
+        }
         coverImage.kf.indicatorType = .activity
         coverImage.kf.setImage(with: gameImage, placeholder: #imageLiteral(resourceName: "MaxGames"))
     }
     func displayError() {
         let alert = UIAlertController(title: "Error", message: "Could not load your game in detail :(", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
+        let okAction = UIAlertAction(title: "Try Again", style: .cancel) { _ in
             let request = GameDetailsModels.GetGameDetail.Request(id: self.game.id)
             self.presenter.askForGame(request: request)
         }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default, handler: nil)
         alert.addAction(okAction)
+        alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
     }
 }

@@ -37,7 +37,7 @@ class MainViewController: UIViewController {
     @objc func refresh(sender: AnyObject) {
         self.getGames()
     }
-
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         refreshControl.beginRefreshing()
@@ -69,11 +69,16 @@ extension MainViewController: MainDisplayLogic{
     
     func displayError() {
         let alert = UIAlertController(title: "Error", message: "Could not load your game list :(", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "OK", style: .cancel) { _ in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
+            self.refreshControl.endRefreshing()
+        }
+        let okAction = UIAlertAction(title: "Try Again", style: .cancel) { _ in
             self.getGames()
         }
         alert.addAction(okAction)
+        alert.addAction(cancelAction)
         present(alert, animated: true, completion: nil)
+        
     }
 }
 extension MainViewController {
@@ -94,8 +99,8 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameTableViewCell", for: indexPath) as! GameTableViewCell
         let game = dataSet[indexPath.row]
-        
         let coverImage = URL(string: game.imageURL)!
+        
         cell.gameImage.kf.indicatorType = .activity
         cell.gameImage.kf.setImage(with: coverImage, placeholder: #imageLiteral(resourceName: "MaxGames"))
         cell.gameName.text = game.name
