@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -147,13 +148,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MaxGames" translatesAutoresizingMaskIntoConstraints="NO" id="BhN-qk-fQg">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
-                                <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="234" id="SYS-XV-0Ri"/>
-                                </constraints>
-                            </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6tZ-sx-ENZ">
                                 <rect key="frame" x="16" y="242" width="288" height="32"/>
                                 <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="26"/>
@@ -200,7 +194,7 @@
                                     <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="mWE-sX-ObD">
                                         <rect key="frame" x="150" y="107" width="20" height="20"/>
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="color" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </activityIndicatorView>
                                 </subviews>
                                 <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -210,22 +204,54 @@
                                     <constraint firstAttribute="height" constant="234" id="cmh-Xd-jPl"/>
                                 </constraints>
                             </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wj3-fe-0tP">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MaxGames" translatesAutoresizingMaskIntoConstraints="NO" id="BhN-qk-fQg">
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
+                                        <color key="backgroundColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hqF-qH-YEv">
+                                        <rect key="frame" x="124.5" y="92" width="71" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="hqF-qH-YEv" secondAttribute="height" multiplier="64:45" id="tLp-Tm-nd3"/>
+                                            <constraint firstAttribute="height" constant="50" id="vVG-i9-vsm"/>
+                                        </constraints>
+                                        <state key="normal" image="youtube-play">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="playPressed:" destination="YxV-Sm-nVf" eventType="touchUpInside" id="Vgm-MR-MYe"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="BhN-qk-fQg" secondAttribute="bottom" id="KhS-Es-GRM"/>
+                                    <constraint firstItem="hqF-qH-YEv" firstAttribute="centerX" secondItem="Wj3-fe-0tP" secondAttribute="centerX" id="fR2-SE-S7K"/>
+                                    <constraint firstAttribute="trailing" secondItem="BhN-qk-fQg" secondAttribute="trailing" id="lV7-0G-cpm"/>
+                                    <constraint firstItem="BhN-qk-fQg" firstAttribute="top" secondItem="Wj3-fe-0tP" secondAttribute="top" id="ltZ-PD-THH"/>
+                                    <constraint firstItem="BhN-qk-fQg" firstAttribute="leading" secondItem="Wj3-fe-0tP" secondAttribute="leading" id="m3O-F6-imC"/>
+                                    <constraint firstItem="hqF-qH-YEv" firstAttribute="centerY" secondItem="Wj3-fe-0tP" secondAttribute="centerY" id="tGV-cV-e6V"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="6tZ-sx-ENZ" firstAttribute="top" secondItem="CBT-NG-QOa" secondAttribute="bottom" constant="8" id="6N5-81-81M"/>
                             <constraint firstItem="CBT-NG-QOa" firstAttribute="trailing" secondItem="rkS-If-8Wk" secondAttribute="trailing" id="8RJ-95-NoI"/>
+                            <constraint firstItem="Wj3-fe-0tP" firstAttribute="top" secondItem="CBT-NG-QOa" secondAttribute="top" id="F4o-fr-mwx"/>
                             <constraint firstItem="Qkk-2e-laO" firstAttribute="leading" secondItem="rkS-If-8Wk" secondAttribute="leading" constant="16" id="GjF-OR-dtu"/>
-                            <constraint firstItem="BhN-qk-fQg" firstAttribute="trailing" secondItem="rkS-If-8Wk" secondAttribute="trailing" id="Im2-4I-RIr"/>
                             <constraint firstItem="6tZ-sx-ENZ" firstAttribute="leading" secondItem="rkS-If-8Wk" secondAttribute="leading" constant="16" id="Ivg-Yh-Hvq"/>
-                            <constraint firstItem="6tZ-sx-ENZ" firstAttribute="top" secondItem="BhN-qk-fQg" secondAttribute="bottom" constant="8" id="NyN-cb-toC"/>
                             <constraint firstItem="rkS-If-8Wk" firstAttribute="trailing" secondItem="6tZ-sx-ENZ" secondAttribute="trailing" constant="16" id="OyR-zN-8HT"/>
                             <constraint firstItem="Qkk-2e-laO" firstAttribute="top" secondItem="6tZ-sx-ENZ" secondAttribute="bottom" constant="8" id="Qsa-KX-UDU"/>
                             <constraint firstItem="rkS-If-8Wk" firstAttribute="trailing" secondItem="Qkk-2e-laO" secondAttribute="trailing" constant="16" id="VKR-Q1-mcc"/>
-                            <constraint firstItem="BhN-qk-fQg" firstAttribute="leading" secondItem="rkS-If-8Wk" secondAttribute="leading" id="Z5E-hv-Gxv"/>
-                            <constraint firstItem="BhN-qk-fQg" firstAttribute="top" secondItem="rkS-If-8Wk" secondAttribute="top" id="Zf1-Ub-2X1"/>
                             <constraint firstItem="CBT-NG-QOa" firstAttribute="leading" secondItem="rkS-If-8Wk" secondAttribute="leading" id="bhA-eD-9kl"/>
                             <constraint firstItem="pVB-wl-Gp4" firstAttribute="leading" secondItem="rkS-If-8Wk" secondAttribute="leading" constant="16" id="m9t-gw-CnM"/>
+                            <constraint firstItem="Wj3-fe-0tP" firstAttribute="trailing" secondItem="CBT-NG-QOa" secondAttribute="trailing" id="qm6-xz-00R"/>
                             <constraint firstItem="CBT-NG-QOa" firstAttribute="top" secondItem="rkS-If-8Wk" secondAttribute="top" id="sbq-Fs-msR"/>
+                            <constraint firstItem="Wj3-fe-0tP" firstAttribute="leading" secondItem="CBT-NG-QOa" secondAttribute="leading" id="szc-yd-KN4"/>
+                            <constraint firstItem="Wj3-fe-0tP" firstAttribute="bottom" secondItem="CBT-NG-QOa" secondAttribute="bottom" id="tQE-qY-Qeh"/>
                             <constraint firstItem="pVB-wl-Gp4" firstAttribute="top" secondItem="Qkk-2e-laO" secondAttribute="bottom" constant="8" id="xBU-EL-dCt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rkS-If-8Wk"/>
@@ -237,6 +263,7 @@
                         <outlet property="gameTitle" destination="6tZ-sx-ENZ" id="c8x-eO-sW3"/>
                         <outlet property="playerView" destination="CBT-NG-QOa" id="svM-IG-ODs"/>
                         <outlet property="releaseDate" destination="bdR-Xu-vda" id="4C4-p8-7eD"/>
+                        <outlet property="thumbContainerView" destination="Wj3-fe-0tP" id="P21-ua-wVe"/>
                         <outlet property="videoActivtyLoading" destination="mWE-sX-ObD" id="BZL-JP-2kf"/>
                     </connections>
                 </viewController>
@@ -533,5 +560,6 @@
     </scenes>
     <resources>
         <image name="MaxGames" width="312" height="118"/>
+        <image name="youtube-play" width="128" height="90"/>
     </resources>
 </document>

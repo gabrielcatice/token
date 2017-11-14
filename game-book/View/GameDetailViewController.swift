@@ -22,6 +22,11 @@ class GameDetailViewController: UIViewController {
     @IBOutlet weak var releaseDate: UILabel!
     @IBOutlet weak var playerView: YTPlayerView!
     @IBOutlet weak var videoActivtyLoading: UIActivityIndicatorView!
+    @IBOutlet weak var thumbContainerView: UIView!
+    @IBAction func playPressed(_ sender: Any) {
+        thumbContainerView.isHidden = true
+        playerView.playVideo()
+    }
     
     
     var game: DisplayedGame!
@@ -29,7 +34,6 @@ class GameDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         let request = GameDetailsModels.GetGameDetail.Request(id: game.id)
         presenter.askForGame(request: request)
     }
@@ -61,10 +65,10 @@ extension GameDetailViewController: GameDetailDisplayLogic {
         } else {
            releaseDate.text = game.releaseDate
         }
-        print(game.trailerURL)
         
-        self.playerView.load(withVideoId: game.trailerURL)
-        //self.videoActivtyLoading.stopAnimating()
+        if self.playerView.load(withVideoId: game.trailerURL) {
+            self.videoActivtyLoading.startAnimating()
+        }
         
         coverImage.kf.indicatorType = .activity
         coverImage.kf.setImage(with: gameImage, placeholder: #imageLiteral(resourceName: "MaxGames"))
@@ -82,3 +86,5 @@ extension GameDetailViewController: GameDetailDisplayLogic {
         present(alert, animated: true, completion: nil)
     }
 }
+
+
