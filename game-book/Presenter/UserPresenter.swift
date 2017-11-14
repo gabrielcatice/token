@@ -10,6 +10,7 @@ import Foundation
 
 typealias UserViewModel = UserModels.GetUser
 
+//  Procotol who decides whose methods will be shown to the UserViewController
 protocol UserPresentationLogic {
     func askForUser()
 }
@@ -17,6 +18,8 @@ protocol UserPresentationLogic {
 class UserPresenter {
     var viewController: UserDisplayLogic!
     func mapUser(_ user: User) -> UserModels.GetUser.ViewModel {
+        
+        //  Formatting the date to present in the correct format
         var stringDate = ""
         let strTime = user.birthday
         let formatter = DateFormatter()
@@ -24,9 +27,9 @@ class UserPresenter {
         if let newDate = formatter.date(from: strTime!) {
             formatter.dateFormat = "dd/MM/yyyy"
             stringDate = formatter.string(from: newDate)
-            
         }
-       
+        
+        //  Mapping the object came from service response to a view model
         let user = DisplayedUser (name: user.name ?? "",
                              lastname: user.lastname ?? "",
                              avatar: user.avatar ?? "",
@@ -41,6 +44,7 @@ class UserPresenter {
     }
 }
 
+//  Implementation of MainPresentationLogic: Does a request to the services layer and map its result
 extension UserPresenter: UserPresentationLogic {
     func askForUser() {
         UserService.fetch { (result) in
@@ -53,12 +57,3 @@ extension UserPresenter: UserPresentationLogic {
         }
     }
 }
-//extension Date {
-//    func dayFormatted() -> String {
-//        let dateFormatter = DateFormatter()
-//        dateFormatter.dateFormat = "dd/MM/yyyy"
-//        dateFormatter.timeStyle = .none
-//        return dateFormatter.string(from: self)
-//    }
-//}
-

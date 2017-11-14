@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 
+//  This procotol receive data from the presenter
 protocol MainDisplayLogic {
     func displayGames(viewModel: MainModels.GetGameList.ViewModel)
     func displayError()
@@ -28,29 +29,36 @@ class MainViewController: UIViewController {
     }
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
-        refreshControl = UIRefreshControl()
+        
+        refreshControl = UIRefreshControl() //Implements pull to refresh and it's activity indicator view
         self.refreshControl.addTarget(self, action: #selector(MainViewController.refresh(sender:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
         self.refreshControl.beginRefreshing()
     }
     
     @objc func refresh(sender: AnyObject) {
+        
         self.getGames()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         super.viewWillAppear(animated)
-        //self.refreshControl.beginRefreshing()
         self.getGames()
     }
     override func awakeFromNib() {
         super.awakeFromNib()
+        
+        //  Setting up the presenter
         let presenter = MainPresenter()
         presenter.viewController = self
         self.presenter = presenter
     }
+    
     func getGames() {
+        //  Call the method to request data on presenter
         presenter.askForGames()
     }
     
@@ -59,14 +67,15 @@ class MainViewController: UIViewController {
     }
 }
 
+//  Extension from MainDisplayLogic to set the data came from the presenter in the screen
 extension MainViewController: MainDisplayLogic{
     func displayGames(viewModel: MainModels.GetGameList.ViewModel) {
-        
-        dataSet = viewModel.displayedGames
+        dataSet = viewModel.displayedGames //   Filling the tableView with data
         refreshControl.endRefreshing()
     }
     
     func displayError() {
+        //  Case failure: error treatments
         let alert = UIAlertController(title: "Sorry :(", message: "Could not load your game list", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
             self.refreshControl.endRefreshing()
@@ -81,6 +90,7 @@ extension MainViewController: MainDisplayLogic{
         
     }
 }
+
 extension MainViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "goToDetail" {
@@ -89,14 +99,18 @@ extension MainViewController {
         }
     }
 }
+//tableview protocols implementations
 extension MainViewController: UITableViewDelegate, UITableViewDataSource{
     func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return dataSet.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "GameTableViewCell", for: indexPath) as! GameTableViewCell
         let game = dataSet[indexPath.row]
         let coverImage = URL(string: game.imageURL)!
@@ -107,9 +121,10 @@ extension MainViewController: UITableViewDelegate, UITableViewDataSource{
         cell.gamePlatform.text = game.platforms
         return cell
     }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let game = dataSet[indexPath.row]
         
+        let game = dataSet[indexPath.row]
         performSegue(withIdentifier: "goToDetail", sender: game)
     }
 }

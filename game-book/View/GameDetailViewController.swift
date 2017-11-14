@@ -10,6 +10,7 @@ import UIKit
 import Kingfisher
 import youtube_ios_player_helper
 
+//  This procotol receive data from the presenter
 protocol GameDetailDisplayLogic {
     func displayGame(viewModel: GameDetailsModels.GetGameDetail.ViewModel)
     func displayError()
@@ -28,18 +29,20 @@ class GameDetailViewController: UIViewController {
         playerView.playVideo()
     }
     
-    
     var game: DisplayedGame!
     var presenter: GameDetailPresentationLogic!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         let request = GameDetailsModels.GetGameDetail.Request(id: game.id)
-        presenter.askForGame(request: request)
+        presenter.askForGame(request: request) //  Call the method to request data on presenter
     }
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
+        //  Setting up the presenter
         let presenter = GameDetailPresenter()
         presenter.viewController = self
         self.presenter = presenter
@@ -47,9 +50,12 @@ class GameDetailViewController: UIViewController {
 }
 
 extension GameDetailViewController: GameDetailDisplayLogic {
+    
     func displayGame(viewModel: GameDetailsModels.GetGameDetail.ViewModel) {
+        
        let gameImage = URL(string: game.imageURL)
         
+        // Verifying if data is null to hide objects from the screen
         if game.name == "" {
             gameTitle.isHidden = true
         } else {
@@ -75,6 +81,7 @@ extension GameDetailViewController: GameDetailDisplayLogic {
     }
     
     func displayError() {
+        //  Case failure: error treatments
         let alert = UIAlertController(title: "Sorry :(", message: "Could not load your game info", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Try Again", style: .cancel) { _ in
             let request = GameDetailsModels.GetGameDetail.Request(id: self.game.id)

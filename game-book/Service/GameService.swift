@@ -12,6 +12,9 @@ class GameService {
     
     static let path = URLs.Game.self
     
+    //services layer implementation
+    
+    //This fuction receivs and Id as paramter and then extract a single object from the array of json objects came from API
     static func getItem(with id: Int, completion: @escaping (Result<Game>) -> Void){
         GameService.fetch { (result) in
             switch result {
@@ -22,32 +25,26 @@ class GameService {
                     completion(.failure(NSError()))
                 }
             case .failure(let error):
-                
                 completion(.failure(error))
             }
         }
     }
     
     static func fetch(completion: @escaping (Result<[Game]>) -> Void) {
-        
         Rest.getList(path.game) {
             switch $0 {
             case .success(let jsonArray):
                 do {
-                    
                     var array = [Game]()
-                    for obj in jsonArray {
+                    for obj in jsonArray { //loops through each objct JSON
                         let game = try Game(with: obj)
                         array.append(game)
                     }
-                    
                     completion(.success(array))
-                    
                 } catch {
                     completion(.failure(error))
                 }
             case .failure(let error):
-
                 completion(.failure(error))
             }
         }

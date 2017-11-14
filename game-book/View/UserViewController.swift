@@ -9,7 +9,7 @@
 import UIKit
 import Kingfisher
 
-
+//  This procotol receive data from the presenter
 protocol UserDisplayLogic {
     func displayUser(viewModel: UserModels.GetUser.ViewModel )
     func displayError()
@@ -18,6 +18,8 @@ protocol UserDisplayLogic {
 class UserViewController: UIViewController {
     
     var presenter: UserPresentationLogic!
+    
+    // Textfields
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var lastNameTextField: UITextField!
@@ -28,7 +30,7 @@ class UserViewController: UIViewController {
     @IBOutlet weak var countryTextField: UITextField!
     @IBOutlet weak var avatarImage: UIImageView!
     
-    
+    // Labels
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var lastnameLabel: UILabel!
     @IBOutlet weak var birthdayLabel: UILabel!
@@ -38,68 +40,77 @@ class UserViewController: UIViewController {
     @IBOutlet weak var countryLabel: UILabel!
     
     override func viewDidLoad() {
+        
         super.viewDidLoad()
         self.getUser()
-        
-  
     }
     
     override func awakeFromNib() {
+        
         super.awakeFromNib()
+        //  Setting up the presenter
         let presenter = UserPresenter()
         presenter.viewController = self
         self.presenter = presenter
     }
     
     func getUser() {
+        
+        //  Call the method to request data on presenter
         presenter.askForUser()
     }
 }
 
+//  Extension from MainDisplayLogic to set the data came from the presenter in the screen
 extension UserViewController: UserDisplayLogic {
     func displayUser(viewModel: UserModels.GetUser.ViewModel) {
-        // Exibir na tela
+       
         let userAvatar = URL(string: viewModel.user.avatar)
         activityIndicator.startAnimating()
         
+        // Verifying if data is null to hide objects from the screen
         if viewModel.user.name == "" {
             nameLabel.isHidden = true
             nameTextField.isHidden = true
         } else {
             nameTextField.text = viewModel.user.name
         }
+        
         if viewModel.user.lastname == "" {
             lastnameLabel.isHidden = true
             lastNameTextField.isHidden = true
         } else {
             lastNameTextField.text = viewModel.user.lastname
         }
-        avatarImage.kf.indicatorType = .activity
-        avatarImage.kf.setImage(with: userAvatar, placeholder: #imageLiteral(resourceName: "MaxGames"))
+        
         if viewModel.user.birthday == "" {
             birthdayLabel.isHidden = true
             birthdayTextField.isHidden = true
         } else {
             birthdayTextField.text = viewModel.user.birthday
         }
+        
         if viewModel.user.email == "" {
             emailLabel.isHidden = true
             emailTextField.isHidden = true
         } else {
             emailTextField.text = viewModel.user.email
         }
+        
         if viewModel.user.address == "" {
             addressLabel.isHidden = true
             addressTextField.isHidden = true
         } else {
             addressTextField.text = viewModel.user.address
         }
+        
         if viewModel.user.city == "" {
             cityLabel.isHidden = true
             cityTextField.isHidden = true
         } else {
             cityTextField.text = viewModel.user.city
         }
+        
         if viewModel.user.country == "" {
             countryLabel.isHidden = true
             countryTextField.isHidden = true
@@ -107,10 +118,15 @@ extension UserViewController: UserDisplayLogic {
             countryTextField.text = viewModel.user.country
         }
         
+        avatarImage.kf.indicatorType = .activity
+        avatarImage.kf.setImage(with: userAvatar, placeholder: #imageLiteral(resourceName: "MaxGames"))
+        
         activityIndicator.stopAnimating()
     }
     
     func displayError() {
+        
+        //  Case failure: error treatments
         let alert = UIAlertController(title: "Sorry :(", message: "Could not load your info", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Try Again", style: .cancel) { _ in
             self.getUser()

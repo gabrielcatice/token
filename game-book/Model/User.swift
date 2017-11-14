@@ -20,9 +20,11 @@ class User {
     let country: String?
     
     init(with json: JSONObject) throws {
+        
         guard let name = json["name"] as? String else {
             throw NSError()
         }
+        
         self.name = name
         lastname = json["lastname"] as? String
         avatar = json["avatar"] as? String
