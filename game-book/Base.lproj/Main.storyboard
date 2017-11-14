@@ -24,16 +24,16 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nm2-uS-6t9">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="nm2-uS-6t9">
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="separatorColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="GameTableViewCell" rowHeight="118" id="l6G-ck-zvq" customClass="GameTableViewCell" customModule="game_book" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="GameTableViewCell" rowHeight="118" id="l6G-ck-zvq" customClass="GameTableViewCell" customModule="game_book" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="118"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="l6G-ck-zvq" id="zIn-sp-OvG">
-                                            <rect key="frame" x="0.0" y="0.0" width="320" height="117.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="117.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="MaxGames" translatesAutoresizingMaskIntoConstraints="NO" id="lfO-S5-l8e">
@@ -44,25 +44,25 @@
                                                     </constraints>
                                                 </imageView>
                                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="ueD-y1-gkL">
-                                                    <rect key="frame" x="180" y="8" width="124" height="101.5"/>
+                                                    <rect key="frame" x="180" y="8" width="91" height="101.5"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fdc-V6-SoU">
-                                                            <rect key="frame" x="0.0" y="0.0" width="124" height="37"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Game Title" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="fdc-V6-SoU">
+                                                            <rect key="frame" x="0.0" y="0.0" width="91" height="29"/>
                                                             <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="17"/>
                                                             <color key="textColor" white="0.1625976562" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="4F3-68-bAL">
-                                                            <rect key="frame" x="0.0" y="37" width="124" height="64.5"/>
+                                                            <rect key="frame" x="0.0" y="29" width="91" height="72.5"/>
                                                             <subviews>
-                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platforms:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="b2t-Aj-gRi">
-                                                                    <rect key="frame" x="0.0" y="0.5" width="124" height="36.5"/>
+                                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platforms:" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="b2t-Aj-gRi">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="91" height="28.5"/>
                                                                     <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="17"/>
                                                                     <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
                                                                 </label>
                                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;X360&quot;, &quot;PS3&quot;, &quot;PC&quot;" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="5" translatesAutoresizingMaskIntoConstraints="NO" id="nYl-vF-u0J">
-                                                                    <rect key="frame" x="0.0" y="37" width="124" height="28"/>
+                                                                    <rect key="frame" x="0.0" y="28.5" width="91" height="44"/>
                                                                     <fontDescription key="fontDescription" name="GeezaPro" family="Geeza Pro" pointSize="13"/>
                                                                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <nil key="highlightedColor"/>
@@ -87,21 +87,10 @@
                                                         <constraint firstItem="4F3-68-bAL" firstAttribute="leading" secondItem="ueD-y1-gkL" secondAttribute="leading" id="zPr-vY-jMf"/>
                                                     </constraints>
                                                 </stackView>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icons8-chevron-right-filled" translatesAutoresizingMaskIntoConstraints="NO" id="w35-pD-3bP">
-                                                    <rect key="frame" x="297" y="50" width="18" height="18"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="18" id="3EP-3s-2tg"/>
-                                                        <constraint firstAttribute="width" constant="18" id="7hd-5Z-d3m"/>
-                                                    </constraints>
-                                                </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="w35-pD-3bP" firstAttribute="centerY" secondItem="zIn-sp-OvG" secondAttribute="centerY" id="Fmf-r0-V3g"/>
-                                                <constraint firstItem="w35-pD-3bP" firstAttribute="top" secondItem="zIn-sp-OvG" secondAttribute="top" constant="50" id="Hak-mh-fEc"/>
                                                 <constraint firstItem="lfO-S5-l8e" firstAttribute="top" secondItem="zIn-sp-OvG" secondAttribute="top" constant="12" id="JgU-Jw-sFP"/>
-                                                <constraint firstAttribute="trailing" secondItem="w35-pD-3bP" secondAttribute="trailing" constant="5" id="L8c-C7-VdA"/>
                                                 <constraint firstItem="ueD-y1-gkL" firstAttribute="leading" secondItem="lfO-S5-l8e" secondAttribute="trailing" constant="8" id="QDR-gY-gSy"/>
-                                                <constraint firstAttribute="bottom" secondItem="w35-pD-3bP" secondAttribute="bottom" constant="50" id="bq5-eG-mgd"/>
                                                 <constraint firstItem="ueD-y1-gkL" firstAttribute="top" secondItem="zIn-sp-OvG" secondAttribute="top" constant="8" id="c4m-zi-0hF"/>
                                                 <constraint firstAttribute="bottom" secondItem="ueD-y1-gkL" secondAttribute="bottom" constant="8" id="foM-KP-o9F"/>
                                                 <constraint firstAttribute="bottom" secondItem="lfO-S5-l8e" secondAttribute="bottom" constant="13.5" id="tOG-3j-d3D"/>
@@ -177,7 +166,7 @@
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Platforms:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zws-DN-bDk">
                                         <rect key="frame" x="0.0" y="0.0" width="288" height="21"/>
                                         <fontDescription key="fontDescription" name="GeezaPro-Bold" family="Geeza Pro" pointSize="17"/>
-                                        <color key="textColor" white="0.16259765625" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="&quot;X360&quot;, &quot;PS3&quot;, &quot;PC&quot;" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mEM-6n-86W">
@@ -523,6 +512,5 @@
     </scenes>
     <resources>
         <image name="MaxGames" width="312" height="118"/>
-        <image name="icons8-chevron-right-filled" width="50" height="50"/>
     </resources>
 </document>

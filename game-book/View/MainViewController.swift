@@ -30,8 +30,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl = UIRefreshControl()
+        self.refreshControl.beginRefreshing()
         self.refreshControl.addTarget(self, action: #selector(MainViewController.refresh(sender:)), for: .valueChanged)
-        tableView.addSubview(refreshControl) // not required when using UITableViewController
+        tableView.addSubview(refreshControl)
     }
     
     @objc func refresh(sender: AnyObject) {
@@ -40,14 +41,12 @@ class MainViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        refreshControl.beginRefreshing()
+        //self.refreshControl.beginRefreshing()
         self.getGames()
     }
     override func awakeFromNib() {
         super.awakeFromNib()
         let presenter = MainPresenter()
-        
-        
         presenter.viewController = self
         self.presenter = presenter
     }
