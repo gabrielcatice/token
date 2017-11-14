@@ -110,7 +110,7 @@ extension UserViewController: UserDisplayLogic {
     }
     
     func displayError() {
-        let alert = UIAlertController(title: "Error", message: "Could not load your info :(", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Sorry :(", message: "Could not load your info", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Try Again", style: .cancel) { _ in
             self.getUser()
         }

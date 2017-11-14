@@ -68,7 +68,7 @@ extension MainViewController: MainDisplayLogic{
     }
     
     func displayError() {
-        let alert = UIAlertController(title: "Error", message: "Could not load your game list :(", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Sorry :(", message: "Could not load your game list", preferredStyle: .alert)
         let cancelAction = UIAlertAction(title: "Cancel", style: .default) { _ in
             self.refreshControl.endRefreshing()
         }
