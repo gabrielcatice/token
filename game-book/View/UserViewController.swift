@@ -39,8 +39,9 @@ class UserViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.getUser()
+        
+  
     }
     
     override func awakeFromNib() {

@@ -246,7 +246,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sme-go-QDA">
-                                        <rect key="frame" x="0.0" y="0.0" width="320" height="603"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="320" height="660"/>
                                         <subviews>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="ode-23-FtG">
                                                 <rect key="frame" x="16" y="16" width="288" height="624"/>
@@ -439,7 +439,7 @@
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="ode-23-FtG" secondAttribute="trailing" constant="16" id="3Rm-RG-dxO"/>
                                             <constraint firstItem="ode-23-FtG" firstAttribute="leading" secondItem="Sme-go-QDA" secondAttribute="leading" constant="16" id="OqV-FS-fqE"/>
-                                            <constraint firstAttribute="height" constant="603" id="aey-dH-hPD"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="ode-23-FtG" secondAttribute="bottom" constant="20" id="pmV-eT-Ytj"/>
                                             <constraint firstItem="ode-23-FtG" firstAttribute="top" secondItem="Sme-go-QDA" secondAttribute="top" constant="16" id="rQY-RE-X9D"/>
                                         </constraints>
                                     </view>

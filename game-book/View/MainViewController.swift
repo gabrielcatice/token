@@ -73,6 +73,7 @@ extension MainViewController: MainDisplayLogic{
             self.refreshControl.endRefreshing()
         }
         let okAction = UIAlertAction(title: "Try Again", style: .cancel) { _ in
+            self.refreshControl.beginRefreshing()
             self.getGames()
         }
         alert.addAction(okAction)
