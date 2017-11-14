@@ -30,9 +30,9 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         refreshControl = UIRefreshControl()
-        self.refreshControl.beginRefreshing()
         self.refreshControl.addTarget(self, action: #selector(MainViewController.refresh(sender:)), for: .valueChanged)
         tableView.addSubview(refreshControl)
+        self.refreshControl.beginRefreshing()
     }
     
     @objc func refresh(sender: AnyObject) {
