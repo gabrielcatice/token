@@ -7,5 +7,6 @@ target 'game-book' do
   
   pod 'Alamofire', '~> 4.5'
   pod 'Kingfisher', '~> 4.0'
+  pod 'youtube-ios-player-helper', '~> 0.1.4'
 
 end

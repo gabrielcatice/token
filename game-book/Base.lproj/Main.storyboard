@@ -194,9 +194,26 @@
                                     </label>
                                 </subviews>
                             </stackView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CBT-NG-QOa" userLabel="YTPlayerView" customClass="YTPlayerView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="234"/>
+                                <subviews>
+                                    <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="mWE-sX-ObD">
+                                        <rect key="frame" x="150" y="107" width="20" height="20"/>
+                                        <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="color" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </activityIndicatorView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="mWE-sX-ObD" firstAttribute="centerX" secondItem="CBT-NG-QOa" secondAttribute="centerX" id="PHq-IY-BaG"/>
+                                    <constraint firstItem="mWE-sX-ObD" firstAttribute="centerY" secondItem="CBT-NG-QOa" secondAttribute="centerY" id="TIB-ug-l1u"/>
+                                    <constraint firstAttribute="height" constant="234" id="cmh-Xd-jPl"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="CBT-NG-QOa" firstAttribute="trailing" secondItem="rkS-If-8Wk" secondAttribute="trailing" id="8RJ-95-NoI"/>
                             <constraint firstItem="Qkk-2e-laO" firstAttribute="leading" secondItem="rkS-If-8Wk" secondAttribute="leading" constant="16" id="GjF-OR-dtu"/>
                             <constraint firstItem="BhN-qk-fQg" firstAttribute="trailing" secondItem="rkS-If-8Wk" secondAttribute="trailing" id="Im2-4I-RIr"/>
                             <constraint firstItem="6tZ-sx-ENZ" firstAttribute="leading" secondItem="rkS-If-8Wk" secondAttribute="leading" constant="16" id="Ivg-Yh-Hvq"/>
@@ -206,7 +223,9 @@
                             <constraint firstItem="rkS-If-8Wk" firstAttribute="trailing" secondItem="Qkk-2e-laO" secondAttribute="trailing" constant="16" id="VKR-Q1-mcc"/>
                             <constraint firstItem="BhN-qk-fQg" firstAttribute="leading" secondItem="rkS-If-8Wk" secondAttribute="leading" id="Z5E-hv-Gxv"/>
                             <constraint firstItem="BhN-qk-fQg" firstAttribute="top" secondItem="rkS-If-8Wk" secondAttribute="top" id="Zf1-Ub-2X1"/>
+                            <constraint firstItem="CBT-NG-QOa" firstAttribute="leading" secondItem="rkS-If-8Wk" secondAttribute="leading" id="bhA-eD-9kl"/>
                             <constraint firstItem="pVB-wl-Gp4" firstAttribute="leading" secondItem="rkS-If-8Wk" secondAttribute="leading" constant="16" id="m9t-gw-CnM"/>
+                            <constraint firstItem="CBT-NG-QOa" firstAttribute="top" secondItem="rkS-If-8Wk" secondAttribute="top" id="sbq-Fs-msR"/>
                             <constraint firstItem="pVB-wl-Gp4" firstAttribute="top" secondItem="Qkk-2e-laO" secondAttribute="bottom" constant="8" id="xBU-EL-dCt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="rkS-If-8Wk"/>
@@ -216,12 +235,14 @@
                         <outlet property="coverImage" destination="BhN-qk-fQg" id="hil-Bc-Mel"/>
                         <outlet property="gamePlatforms" destination="mEM-6n-86W" id="CRo-Lb-AGc"/>
                         <outlet property="gameTitle" destination="6tZ-sx-ENZ" id="c8x-eO-sW3"/>
+                        <outlet property="playerView" destination="CBT-NG-QOa" id="svM-IG-ODs"/>
                         <outlet property="releaseDate" destination="bdR-Xu-vda" id="4C4-p8-7eD"/>
+                        <outlet property="videoActivtyLoading" destination="mWE-sX-ObD" id="BZL-JP-2kf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MZj-Qk-zNC" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1333.5999999999999" y="392.65367316341832"/>
+            <point key="canvasLocation" x="1333.125" y="391.90140845070425"/>
         </scene>
         <!--YOUR ACCOUNT-->
         <scene sceneID="jvi-JK-EIY">

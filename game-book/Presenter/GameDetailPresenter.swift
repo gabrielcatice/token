@@ -17,7 +17,12 @@ class GameDetailPresenter {
     
     func mapGame(_ game: Game) -> GameDetailsModels.GetGameDetail.ViewModel {
         
-        let displayedGame = DisplayedGameDetail(id: game.id ?? 0, name: game.name ?? "", imageURL: game.imageURL ?? "", releaseDate: game.releaseDate ?? "", trailerURL: game.trailerURL ?? "", platforms: game.platforms ?? [])
+        let videoURL = game.trailerURL!
+        let index = videoURL.index(of: "=")!
+        let videoID = String(videoURL[index...])
+        
+        
+        let displayedGame = DisplayedGameDetail(id: game.id ?? 0, name: game.name ?? "", imageURL: game.imageURL ?? "", releaseDate: game.releaseDate ?? "", trailerURL: videoID, platforms: game.platforms ?? [])
         let viewModel = GameDetailsModels.GetGameDetail.ViewModel(gameDetail: displayedGame)
         return viewModel
     }

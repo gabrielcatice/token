@@ -8,6 +8,7 @@
 
 import UIKit
 import Kingfisher
+import youtube_ios_player_helper
 
 protocol GameDetailDisplayLogic {
     func displayGame(viewModel: GameDetailsModels.GetGameDetail.ViewModel)
@@ -16,11 +17,13 @@ protocol GameDetailDisplayLogic {
 
 class GameDetailViewController: UIViewController {
     @IBOutlet weak var coverImage: UIImageView!
-    
     @IBOutlet weak var gameTitle: UILabel!
     @IBOutlet weak var gamePlatforms: UILabel!
-    
     @IBOutlet weak var releaseDate: UILabel!
+    @IBOutlet weak var playerView: YTPlayerView!
+    @IBOutlet weak var videoActivtyLoading: UIActivityIndicatorView!
+    
+    
     var game: DisplayedGame!
     var presenter: GameDetailPresentationLogic!
     
@@ -58,9 +61,15 @@ extension GameDetailViewController: GameDetailDisplayLogic {
         } else {
            releaseDate.text = game.releaseDate
         }
+        print(game.trailerURL)
+        
+        self.playerView.load(withVideoId: game.trailerURL)
+        //self.videoActivtyLoading.stopAnimating()
+        
         coverImage.kf.indicatorType = .activity
         coverImage.kf.setImage(with: gameImage, placeholder: #imageLiteral(resourceName: "MaxGames"))
     }
+    
     func displayError() {
         let alert = UIAlertController(title: "Sorry :(", message: "Could not load your game info", preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Try Again", style: .cancel) { _ in
