@@ -9,6 +9,7 @@
 import UIKit
 import Kingfisher
 import youtube_ios_player_helper
+import AVKit
 
 //  This procotol receive data from the presenter
 protocol GameDetailDisplayLogic {
@@ -52,6 +53,7 @@ class GameDetailViewController: UIViewController {
 extension GameDetailViewController: GameDetailDisplayLogic {
     
     func displayGame(viewModel: GameDetailsModels.GetGameDetail.ViewModel) {
+        self.videoActivtyLoading.startAnimating()
         
        let gameImage = URL(string: game.imageURL)
         
@@ -72,8 +74,10 @@ extension GameDetailViewController: GameDetailDisplayLogic {
            releaseDate.text = game.releaseDate
         }
         
+        self.videoActivtyLoading.stopAnimating()
         if self.playerView.load(withVideoId: game.trailerURL) {
-            self.videoActivtyLoading.startAnimating()
+            
+            try! AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
         }
         
         coverImage.kf.indicatorType = .activity
