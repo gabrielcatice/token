@@ -20,6 +20,9 @@ This projet was built following the MVP project standard, who basically consists
 - The model who will be used as a form to fit the object parsed from JSON
 
 #### Scene and flow layer:
-- The presenter, who has the function to intermediate an make the connection between the view and the data came from data and services layer. The presenter also provides protocols to hide and show methods of which the view will be able to see and implement its extension. Still, it has the function to parse data came from model to a model view, who will fit perfectly the logic shown in the view 
-- The view, who will receive data from the presenter and then shows it to the user on his screen. The view also extends a protocol from presenter to be able to make request and then continue the flow
+- The **Presenter**, who has the function to intermediate an make the connection between the view and the data came from data and services layer. 
+- The **View**, who will receive formatted data from the presenter and then shows it to the user on his screen. The view will receive user interactions events and will send it to presenter if needed.
+- The communication between View and Presenter is wrapped in two data types. The view will request things to presenter by passing a **Request** object and Presenter will response with a **ViewModel** object.
+- The Response object should wrap the parametters needed to request something and the ViewModel wraps all formatted data ready to be shown to the user. Simple code organization.
+- Using the protocol orientation hype, the Presenter doesn't have known about the View that are using it (the presenter), and vice-versa. The presenter only knows some Displaying Logic Methods exposed by the **Display Logic Protocol**, otherwise the View will know only some Presentation Logic Methods, exposed by **Presentation Logic Protocol**. It can be acheieved by using protocol oriented programming. Using this paradigm the presenter will be able to handle any object as a View, since this object implements the Display Logic Protocol. Worth the analogue.
  
